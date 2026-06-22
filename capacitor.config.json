@@ -1,10 +1,28 @@
-{
+
+}{
   "appId": "app.netlify.miswak",
-  "appName": "miswak-v2",
+  "appName": "مسواك",
   "webDir": "www",
-  "bundledWebRuntime": false,
   "server": {
-    "androidScheme": "https",
-    "allowNavigation": []
+    "cleartext": false,
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false,
+    "useLegacyBridge": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#145214",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "Browser": {
+      "presentationStyle": "popover"
+    }
   }
 }
