@@ -1,42 +1,45 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
 
-3s
-0s
-6s
-1m 3s
-13s
-1s
-4m 14s
-Run flutter build apk --release
-Running Gradle task 'assembleRelease'...                        
-Checking the license for package CMake 3.22.1 in /usr/local/lib/android/sdk/licenses
-License for package CMake 3.22.1 accepted.
-Preparing "Install CMake 3.22.1 v.3.22.1".
-"Install CMake 3.22.1 v.3.22.1" ready.
-Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1
-"Install CMake 3.22.1 v.3.22.1" complete.
-"Install CMake 3.22.1 v.3.22.1" finished.
-Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 3992 bytes (99.8% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+android {
+    namespace "com.example.rabahdj_local_app"
+    compileSdk 34
 
-FAILURE: Build failed with an exception.
+    compileOptions {
+        // تفعيل خاصية الـ Desugaring الهامة جداً لحل خطأ البناء الأخير (صيغة Groovy)
+        coreLibraryDesugaringEnabled true
+        
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
-* What went wrong:
-Execution failed for task ':app:checkReleaseAarMetadata'.
-> A failure occurred while executing com.android.build.gradle.internal.tasks.CheckAarMetadataWorkAction
-   > An issue was found when checking AAR metadata:
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
-       1.  Dependency ':flutter_local_notifications' requires core library desugaring to be enabled
-           for :app.
+    defaultConfig {
+        applicationId "com.example.rabahdj_local_app"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0.0"
+    }
 
-           See https://developer.android.com/studio/write/java8-support.html for more
-           details.
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
+}
 
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to generate a Build Scan (Powered by Develocity).
-> Get more help at https://help.gradle.org.
+flutter {
+    source "../.."
+}
 
-BUILD FAILED in 4m 12s
-Running Gradle task 'assembleRelease'...                          253.4s
-Gradle task assembleRelease failed with exit code 1
-Error: Process completed with exit code 1.
+dependencies {
+    // إضافة حزمة التوافقية لدعم جافا 8 في الإشعارات المحلية (صيغة Groovy)
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+}
