@@ -1,10 +1,30 @@
-include ':app'
+buildscript {
+    ext.kotlin_version = '1.9.22'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
 
-include ':capacitor-android'
-project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
 
-include ':capacitor-browser'
-project(':capacitor-browser').projectDir = new File('../node_modules/@capacitor/browser/android')
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
 
-include ':capacitor-splash-screen'
-project(':capacitor-splash-screen').projectDir = new File('../node_modules/@capacitor/splash-screen/android')
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
