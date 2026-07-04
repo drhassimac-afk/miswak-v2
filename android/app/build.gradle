@@ -14,10 +14,13 @@ android {
         targetSdkVersion 34
         versionCode 1
         versionName "1.0.0"
+        
+        // تفعيل هذا السطر إلزامي لمكتبات الإشعارات والتشفير الحديثة لتفادي أخطاء الـ AAR
+        multiDexEnabled true
     }
 
     compileOptions {
-        coreLibraryDesugaringEnabled true // تأكيد التفعيل هنا بدون مساواة
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -38,5 +41,6 @@ flutter {
 }
 
 dependencies {
+    // سحب المكتبة الداعمة الصافية لتوافقية جافا 8
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.4"
 }
