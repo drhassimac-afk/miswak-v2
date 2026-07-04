@@ -9,8 +9,8 @@ android {
     compileSdk 34
 
     compileOptions {
-        // تفعيل خاصية الـ Desugaring الهامة جداً لحل خطأ البناء الأخير (صيغة Groovy)
-        coreLibraryDesugaringEnabled true
+        // الصياغة البرمجية الأكثر استقراراً لتفعيل الخاصية في نظام Groovy
+        coreLibraryDesugaringEnabled = true
         
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -40,6 +40,6 @@ flutter {
 }
 
 dependencies {
-    // إضافة حزمة التوافقية لدعم جافا 8 في الإشعارات المحلية (صيغة Groovy)
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+    // تحديث وتأكيد مكتبة فك التشفير والتوافقية لدعم جافا 8 في الإشعارات
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.4"
 }
