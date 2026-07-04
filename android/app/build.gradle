@@ -9,7 +9,7 @@ android {
     compileSdk 34
 
     compileOptions {
-        // تفعيل خاصية الـ Desugaring الإلزامية للإصدار v22 (صيغة Groovy الصافية)
+        // تفعيل الخاصية بشكل قاطع وصارم لمنع خطأ الـ AAR Metadata نهائياً
         coreLibraryDesugaringEnabled true
         
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -40,6 +40,6 @@ flutter {
 }
 
 dependencies {
-    // سحب حزمة فك التشفير والتوافقية المطلوبة للإصدار الجديد (صيغة Groovy)
+    // استدعاء المكتبة الداعمة الإلزامية التي يصر عليها نظام أندرويد الحديث
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.4"
 }
