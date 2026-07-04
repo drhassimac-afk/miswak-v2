@@ -8,27 +8,24 @@ android {
     namespace "com.example.rabahdj_local_app"
     compileSdk 34
 
+    compileOptions {
+        // تفعيل خاصية الـ Desugaring الإلزامية للإصدار v22 (صيغة Groovy الصافية)
+        coreLibraryDesugaringEnabled true
+        
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
         applicationId "com.example.rabahdj_local_app"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
         versionName "1.0.0"
-    }
-
-        compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-        
-        // إجبار مترجم الجافا على تخطي أخطاء التشابه والتحذيرات الصارمة في السيرفرات
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:none"
-            options.compilerArgs << "-nowarn"
-        }
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 
     buildTypes {
@@ -43,5 +40,6 @@ flutter {
 }
 
 dependencies {
-    // ملف نظيف بدون حزم desugaring خارجية تسبب أخطاء للسيرفر
+    // سحب حزمة فك التشفير والتوافقية المطلوبة للإصدار الجديد (صيغة Groovy)
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.4"
 }
