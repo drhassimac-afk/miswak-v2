@@ -13,6 +13,21 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// التعديل السحري: إجبار محرك أندرويد على تفعيل الـ Desugaring لكل الحزم (بما فيها حزمة الإشعارات)
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty("android")) {
+            project.android {
+                compileOptions {
+                    coreLibraryDesugaringEnabled true
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+            }
+        }
+    }
+}
+
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
