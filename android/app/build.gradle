@@ -16,9 +16,15 @@ android {
         versionName "1.0.0"
     }
 
-    compileOptions {
+        compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        
+        // إجبار مترجم الجافا على تخطي أخطاء التشابه والتحذيرات الصارمة في السيرفرات
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:none"
+            options.compilerArgs << "-nowarn"
+        }
     }
 
     kotlinOptions {
